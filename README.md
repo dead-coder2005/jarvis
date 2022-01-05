@@ -1,7 +1,3 @@
-# fuck
-
-you explain your project here lol
-
 so, heres what I have done
 
  - added some ease of convenience when you install packages,
