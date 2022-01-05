@@ -12,6 +12,9 @@ engine = pyttsx3.init()
 engine.say('Hello sir welcome back')
 engine.runAndWait()
 
+# debug command
+debug = "what is the temperature in Hudson"
+
 
 def talk(text):
     engine.say(text)
@@ -19,7 +22,9 @@ def talk(text):
 
 
 def take_command():
-    try:
+    if debug != "":
+        return debug
+    else:
         with sr.Microphone() as source:
             print('listening...')
             voice = listener.listen(source)
@@ -28,9 +33,7 @@ def take_command():
             if 'jarvis' in command:
                 command = command.replace('jarvis', '')
                 print(command)
-    except:
-        pass
-    return command
+        return command
 
 
 def run_jarvis():
@@ -38,29 +41,29 @@ def run_jarvis():
     print(command)
     if 'play' in command:
         song = command.replace('play', '')
-        talk('playing ' + song + 'sir')
+        response = 'playing ' + song + 'sir'
         pywhatkit.playonyt(song)
     elif 'time' in command:
         time = datetime.datetime.now().strftime('%I:%M')
-        print(time)
-        talk('The current time is ' + time + 'sir')
+        response = 'The current time is ' + time + 'sir'
     elif 'who is' in command:
         person = command.replace('who is', '')
         info = wikipedia.summary(person, 1)
-        print(info)
-        talk(info)
+        response = info
     elif 'hello' in command:
-        print('hello sir')
-        talk('hello sir')
+        response = "hello, sir"
     elif 'joke' in command:
-        talk(pyjokes.get_joke())
+        response = pyjokes.get_joke()
     elif 'what is the temperature in' in command:
-        weather_place = command.replace('what is the temperature in', '')
-        weather = get_weather(weather_place)
-        talk(get_weather(weather))
+        weather_place = command.replace('what is the temperature in ', '')
+        response = get_weather(weather_place)
+        # response = get_weather(weather) #@TODO fix this
     else:
-        talk('Can you repeat that sir?')
+        response = 'Can you repeat that sir?'
+    print(response)
+    talk(response)
 
 
-while True:
-    run_jarvis()
+# while True:
+#     run_jarvis()
+run_jarvis()

@@ -1,0 +1,6 @@
+Py_Weather==0.0.1
+pyjokes==0.6.0
+pyttsx3==2.90
+pywhatkit==5.2
+SpeechRecognition==3.8.1
+wikipedia==1.4.0
