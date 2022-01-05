@@ -1,5 +1,3 @@
-so, heres what I have done
-
  - added some ease of convenience when you install packages,
    - run `python3 -m pipreqs . --force` to convert packages to easy file.
    - run `python3 -m pip install -r requirements.txt` to download packages.
