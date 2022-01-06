@@ -13,8 +13,8 @@ engine.say('Hello sir welcome back')
 engine.runAndWait()
 
 # debug command
-debug = "what is the temperature in Hudson"
-
+#debug = "what is the temperature in Hudson"
+debug = ""
 
 def talk(text):
     engine.say(text)
@@ -58,12 +58,22 @@ def run_jarvis():
         weather_place = command.replace('what is the temperature in ', '')
         response = get_weather(weather_place)
         # response = get_weather(weather) #@TODO fix this
+    elif 'goodbye' in command:
+        response = "goodbye"
+        talk(response)
+        exit()
     else:
         response = 'Can you repeat that sir?'
     print(response)
     talk(response)
 
 
-# while True:
-#     run_jarvis()
-run_jarvis()
+if __name__ == "__main__":
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        while 1:
+            run_jarvis()
+        else:
+            response = 'Can you repeat that sir?'
+        print(response)
+        talk(response)
